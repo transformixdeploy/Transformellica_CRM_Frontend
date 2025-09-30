@@ -92,13 +92,13 @@ const BrandingAudit = () => {
                 {data.websiteImage.data && (
                     <div className="bg-gray-800 rounded-lg shadow-xl p-4 flex flex-col items-center justify-center">
                         <h2 className="text-xl font-semibold text-gray-200 mb-4">Website Screenshot</h2>
-                        <img src={`data:${data.websiteImage.mimeType};base64,${data.websiteImage.data}`} alt="Website Screenshot" className="max-w-full h-auto rounded-md" />
+                        <img src={`data:${data.websiteImage.mimeType};base64,${data.websiteImage.data}`} alt="Website Screenshot" className="max-w-full h-200 rounded-md" />
                     </div>
                 )}
                 {data.instaImage.data && (
                     <div className="bg-gray-800 rounded-lg shadow-xl p-4 flex flex-col items-center justify-center">
                         <h2 className="text-xl font-semibold text-gray-200 mb-4">Instagram Screenshot</h2>
-                        <img src={`data:${data.instaImage.mimeType};base64,${data.instaImage.data}`} alt="Instagram Screenshot" className="max-w-full h-auto rounded-md" />
+                        <img src={`data:${data.instaImage.mimeType};base64,${data.instaImage.data}`} alt="Instagram Screenshot" className="max-w-full h-200 rounded-md" />
                     </div>
                 )}
             </section>
