@@ -52,7 +52,7 @@ export default function Sidebar() {
           href="/bi-analysis/display"
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
-            pathname === "/" ? "bg-muted text-primary" : "text-muted-foreground",
+            pathname === "/bi-analysis/display" ? "bg-muted text-primary" : "text-muted-foreground",
             isCollapsed ? "justify-center" : "justify-start"
           )}
         >
@@ -63,7 +63,7 @@ export default function Sidebar() {
           href="/bi-analysis/ai-assistant"
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
-            pathname === "/ai-assistant" ? "bg-muted text-primary" : "text-muted-foreground",
+            pathname === "/bi-analysis/ai-assistant" ? "bg-muted text-primary" : "text-muted-foreground",
             isCollapsed ? "justify-center" : "justify-start"
           )}
         >
@@ -74,7 +74,7 @@ export default function Sidebar() {
           href="/bi-analysis/dashboard"
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
-            pathname === "/dashboard" ? "bg-muted text-primary" : "text-muted-foreground",
+            pathname === "/bi-analysis/dashboard" ? "bg-muted text-primary" : "text-muted-foreground",
             isCollapsed ? "justify-center" : "justify-start"
           )}
         >
@@ -85,7 +85,7 @@ export default function Sidebar() {
           href="/bi-analysis/pattern-analysis"
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
-            pathname === "/pattern-analysis" ? "bg-muted text-primary" : "text-muted-foreground",
+            pathname === "/bi-analysis/pattern-analysis" ? "bg-muted text-primary" : "text-muted-foreground",
             isCollapsed ? "justify-center" : "justify-start"
           )}
         >
@@ -96,7 +96,7 @@ export default function Sidebar() {
           href="/bi-analysis/docs"
           className={cn(
             "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
-            pathname === "/pattern-analysis" ? "bg-muted text-primary" : "text-muted-foreground",
+            pathname === "/bi-analysis/docs" ? "bg-muted text-primary" : "text-muted-foreground",
             isCollapsed ? "justify-center" : "justify-start"
           )}
         >

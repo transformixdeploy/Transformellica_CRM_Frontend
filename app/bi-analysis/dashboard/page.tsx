@@ -67,7 +67,7 @@ function DashboardPage() {
         const checkData = async () => {
 
           try{
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/check-table`);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/table`);
             setDataExists(response.data.status);
 
             const storageData = localStorage.getItem("userData");
@@ -76,7 +76,7 @@ function DashboardPage() {
             }
 
             if(response.data.status && !storageData){
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard-data`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/dashboard`);
                 setData(response.data);
                 localStorage.setItem("userData", JSON.stringify(response.data));
                 console.log(response.data);

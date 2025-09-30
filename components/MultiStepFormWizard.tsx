@@ -161,7 +161,7 @@ const MultiStepFormWizard: React.FC<MultiStepFormWizardProps> = ({ onClose, setA
         instagram_link: submissionData.instagram_link
       }
       
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/social-swot-analysis`, form ); 
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/social/social-swot`, form ); 
       
       /////////////////////////////
       const socialSWOTData = response.data;
@@ -181,7 +181,7 @@ const MultiStepFormWizard: React.FC<MultiStepFormWizardProps> = ({ onClose, setA
         website_url: submissionData.website_url
       }
       
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/website-swot-analysis`, form );
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/social/website-swot`, form );
       const websiteSWOTData = response.data;
 
       localStorage.setItem(localStorageDataNames.WEBSITE_SWOT, JSON.stringify(websiteSWOTData));
@@ -198,7 +198,7 @@ const MultiStepFormWizard: React.FC<MultiStepFormWizardProps> = ({ onClose, setA
         industry_field: submissionData.industry,
       }
 
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/customer-sentiment-analysis`, form );
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/social/sentiment-analysis`, form );
       
       /////////////////////////////
       const sentimentData = response.data;
@@ -220,7 +220,7 @@ const MultiStepFormWizard: React.FC<MultiStepFormWizardProps> = ({ onClose, setA
       form.append("logoUpload", submissionData.raw_form_data.logoUpload || new File([], ""));
       
       
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/branding-audit`, form );
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/social/branding-audit`, form );
 
       /////////////////////////////
       const brandingAuditData = response.data;

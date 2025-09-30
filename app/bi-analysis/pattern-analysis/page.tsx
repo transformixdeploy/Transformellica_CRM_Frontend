@@ -33,7 +33,7 @@ function PatternAnalysisPage() {
     useEffect(()=>{
         const checkData = async () => {
 
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/check-table`);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/table`);
             setDataExists(response.data.status);
             setCheckingData(false);
 
@@ -53,7 +53,7 @@ function PatternAnalysisPage() {
             if(response.data.status && (!storagePatterns && !storageInitialData)){
                 setInitialChecking(true);
                 try{
-                    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/pattern-analysis-initial`);
+                    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/pattern-analysis`);
                     setHaveTransactions(response.data.transactionalPatternsDetected);
 
                     if(response.data.transactionalPatternsDetected){
@@ -75,7 +75,7 @@ function PatternAnalysisPage() {
         setIsAnalyzing(true);
         localStorage.removeItem("patterns");
         try{
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/pattern-analysis-analyze`, {minSupport: minSupport});
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/pattern-analysis`, {minSupport: minSupport});
             setFoundPattern(response.data.foundPatterns);
             
             if(response.data.foundPatterns){

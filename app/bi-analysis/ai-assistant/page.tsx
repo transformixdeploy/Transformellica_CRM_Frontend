@@ -31,11 +31,11 @@ function AIAssistantPage() {
 
   useEffect(()=>{
     const checkData = async ()=>{
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/check-table`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/table`);
         setDataExists(response.data.status);
 
         if(response.data.status){
-          const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/smart-question-examples`);
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/smart-question`);
           setSmartQuestions(response.data);
         }
 
@@ -52,7 +52,7 @@ function AIAssistantPage() {
   async function askQuestion(){
     setIsAnalysing(true);
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/question-answer`, {question});
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/smart-question`, {question});
       setDataAnalyzed(true);
       setAnalysis(response.data);
       console.log(response.data);

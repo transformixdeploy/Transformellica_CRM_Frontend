@@ -130,7 +130,7 @@ export default function Home() {
     setFetchingData(true);
     
     try {
-      const tableData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/data?page=${currentPage}&limit=10`);
+      const tableData = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/data?page=${currentPage}&limit=10`);
       setData(tableData.data.data);
       setLastPage(tableData.data.lastPage);
       setTotalCount(tableData.data.totalCount);
@@ -156,12 +156,12 @@ export default function Home() {
       try {
 
         if(!dataExists){
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/check-table`);
+          const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/table`);
           setDataExists(response.data.status);
   
           if(response.data.status == true){
             try{
-              const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/display-cards`);
+              const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/display-cards`);
               setCardsData(response.data);
   
               await fetchData(page);
@@ -215,7 +215,7 @@ export default function Home() {
         formData.append('data', file);
         
         try{
-          const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/upload`, formData);
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/data`, formData);
           setCardsData(response.data);
           setDataExists(true); // Assuming successful upload means data now exists // Fetch first page after upload
           await fetchData(page); // Re-fetch data after successful upload
@@ -241,7 +241,7 @@ export default function Home() {
     setDeletingData(true);
     
     try{
-      await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/table`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/crm/table`);
       setDataExists(false);
       setData([]);
       setCardsData({domain: "", missing_data_ratio: 0, num_numeric_columns: 0, total_columns: 0, total_rows: 0});
