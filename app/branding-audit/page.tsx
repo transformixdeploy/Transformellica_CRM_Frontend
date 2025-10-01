@@ -81,7 +81,7 @@ const BrandingAudit = () => {
                     {"A comprehensive analysis of your brand's visual identity, messaging, and overall strategy."}
                 </p>
                 <div className="flex justify-center">
-                    <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105">
+                    <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
                         Delete this analysis
                     </Button>
                 </div>
@@ -246,7 +246,7 @@ const BrandingAudit = () => {
 
             {/* Scorecard */}
             <section className="mb-12 bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700">
-                <h2 className="text-4xl font-bold text-white mb-6 text-center">Scorecard</h2>
+                <h2 className="text-4xl font-bold text-white mb-6 text-center">Score Card</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full divide-y divide-gray-700">
                         <thead className="bg-gray-700">

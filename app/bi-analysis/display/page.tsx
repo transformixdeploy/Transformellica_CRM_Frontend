@@ -275,7 +275,7 @@ export default function Home() {
           </div>
           <div className="flex items-center space-x-3">
             <div className="rounded-lg flex items-center justify-center">
-              <Button disabled={deletingData || isUploading || isChecking} onClick={deleteData} className="bg-destructive hover:bg-destructive/90">
+              <Button disabled={deletingData || isUploading || isChecking} onClick={deleteData} className="bg-destructive hover:bg-destructive/90 hover:cursor-pointer">
                 {deletingData ? "Deleting..." : "Delete Data"}
               </Button>
             </div>

@@ -9,6 +9,24 @@ import Link from 'next/link';
 
 const SentimentAnalysis = () => {
 
+    const CustomTooltip = ({ active, payload, label }: any) => {
+        if (active && payload && payload.length) {
+            // console.log(payload[0].fill);
+            
+          return (
+            <div className="bg-gray-700 border border-gray-600 rounded-lg p-3 shadow-lg">
+              <p className="text-white font-semibold text-lg mb-1">{`${label ?? ""}`}</p>
+              {payload.map((item: { value: string; name: string; fill?: string; color?: string }, index: number) => (
+                <p key={index} className="font-medium" style={{ color: item.fill ?? item.color }}>
+                  {`${item.name}: ${item.value}`}
+                </p>
+              ))}
+            </div>
+          );
+        }
+        return null;
+    };
+
     const router = useRouter();  
 
     const [data, setData] = useState({
@@ -77,7 +95,7 @@ const SentimentAnalysis = () => {
                     Comprehensive insights into your customer sentiment and competitive landscape.
                 </p>
                 <div className="flex justify-center mt-6">
-                  <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105">
+                  <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
                     Delete this analysis
                   </Button>
                 </div>
@@ -165,7 +183,7 @@ const SentimentAnalysis = () => {
                               <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
                               <XAxis dataKey="name" stroke="#9CA3AF" />
                               <YAxis stroke="#9CA3AF" />
-                              <Tooltip />
+                              <Tooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar dataKey="positive" stackId="a" fill="#34D399" name="Positive" />
                               <Bar dataKey="negative" stackId="a" fill="#EF4444" name="Negative" />
@@ -187,7 +205,7 @@ const SentimentAnalysis = () => {
                               <XAxis type="number" dataKey="googleRating" name="Google Rating" stroke="#9CA3AF" />
                               <YAxis  type="number" dataKey="averageSentiment" name="Average Sentiment" stroke="#9CA3AF" />
                               <ZAxis dataKey="competitorName" name="Competitor" />
-                              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                              <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3' }} />
                               <Legend />
                               <Scatter name="Competitors" data={data.competitorRating_averageSentiment_chart} fill="#8884d8" />
                           </ScatterChart>
@@ -207,7 +225,7 @@ const SentimentAnalysis = () => {
                               <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
                               <XAxis dataKey="name" stroke="#9CA3AF" />
                               <YAxis stroke="#9CA3AF" />
-                              <Tooltip />
+                              <Tooltip content={<CustomTooltip />} />
                               <Legend />
                               <Bar dataKey="reviews" fill="#82ca9d" name="Reviews" />
                           </BarChart>

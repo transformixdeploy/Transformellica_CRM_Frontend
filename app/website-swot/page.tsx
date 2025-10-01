@@ -77,7 +77,7 @@ const WebsiteSWOT = () => {
           Website SWOT Analysis
         </motion.h1>
         <div className="flex justify-center">
-          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105">
+          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
             Delete this analysis
           </Button>
         </div>

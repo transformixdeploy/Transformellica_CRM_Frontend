@@ -314,8 +314,14 @@ function AIAssistantPage() {
             <div className="flex flex-wrap gap-3">
               
               {/* question */}
-              {analysis.followUpQuestions.map((feature,index)=>(
+              {/* {analysis.followUpQuestions.map((feature,index)=>(
                 <div key={index} onClick={()=>setQuestion(feature)} className="p-2 px-4 border-2 border-border rounded-lg cursor-pointer hover:bg-muted/50 transition-colors flex items-center space-x-2">
+                  <Icon icon="ph:arrow-right-bold" className="w-4 h-4 text-primary" />
+                  <div className="text-sm font-medium text-foreground">{feature}</div>
+                </div>
+              ))} */}
+              {analysis.followUpQuestions.map((feature,index)=>(
+                <div key={index} className="p-2 px-4 border-2 border-border rounded-lg flex items-center space-x-2">
                   <Icon icon="ph:arrow-right-bold" className="w-4 h-4 text-primary" />
                   <div className="text-sm font-medium text-foreground">{feature}</div>
                 </div>

@@ -7,6 +7,21 @@ import { Button } from '@/components/ui/button';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 
+// Custom Tooltip Component
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-gray-700 border border-gray-600 rounded-lg p-3 shadow-lg">
+        <p className="text-white font-semibold text-lg mb-1">{`${label}`}</p>
+        <p className="text-green-400 font-medium">
+          {`Frequency: ${payload[0].value}`}
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
+
 const SocialSWOT = () => {
   const router = useRouter();
 
@@ -61,7 +76,7 @@ const SocialSWOT = () => {
           Detailed insights into your social media performance and competitive landscape.
         </p>
         <div className="flex justify-center">
-          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105">
+          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
             Delete this analysis
           </Button>
         </div>
@@ -123,7 +138,7 @@ const SocialSWOT = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
               <XAxis dataKey="tag" stroke="#9CA3AF" />
               <YAxis stroke="#9CA3AF" />
-              <Tooltip />
+              <Tooltip content={<CustomTooltip />} />
               <Legend />
               <Bar dataKey="frequency" fill="#82ca9d" name="Frequency" />
             </BarChart>
