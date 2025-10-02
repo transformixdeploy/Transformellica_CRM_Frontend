@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+import { ReanalyzeButton } from '@/components/ReanalyzeButton';
+import { HeartPlus, MessageSquareMore, ThumbsUp } from 'lucide-react';
 
 // Custom Tooltip Component
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -76,9 +78,7 @@ const SocialSWOT = () => {
           Detailed insights into your social media performance and competitive landscape.
         </p>
         <div className="flex justify-center">
-          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
-            Delete this analysis
-          </Button>
+          <ReanalyzeButton onClick={handleDeleteAnalysis}/>
         </div>
       </header>
 
@@ -106,8 +106,8 @@ const SocialSWOT = () => {
           <div className="space-y-4 text-lg">
             <p><span className="font-semibold text-gray-300">Name:</span> {data.profileInfo.basicInfo.name}</p>
             <p><span className="font-semibold text-gray-300">Bio:</span> {data.profileInfo.basicInfo.bio}</p>
-            <p><span className="font-semibold text-gray-300">Verified:</span> {data.profileInfo.basicInfo.verified ? 'Yes' : 'No'}</p>
-            <p><span className="font-semibold text-gray-300">Private:</span> {data.profileInfo.basicInfo.private ? 'Yes' : 'No'}</p>
+            <p className={`${data.profileInfo.basicInfo.verified ? "text-green-500" : "text-red-500"} font-bold`}><span className="font-semibold text-gray-300">Verified:</span> {data.profileInfo.basicInfo.verified ? 'Yes' : 'No'}</p>
+            <p className={`${data.profileInfo.basicInfo.private ? "text-green-500" : "text-red-500"} font-bold`}><span className="font-semibold text-gray-300">Private:</span> {data.profileInfo.basicInfo.private ? 'Yes' : 'No'}</p>
             <p><span className="font-semibold text-gray-300">Website:</span> <Link href={data.profileInfo.basicInfo.website} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{data.profileInfo.basicInfo.website}</Link></p>
           </div>
         </div>
@@ -115,11 +115,41 @@ const SocialSWOT = () => {
         {/* Additional Metrics */}
         <div className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700">
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Additional Metrics</h2>
-          <div className="space-y-4 text-lg">
-            <p><span className="font-semibold text-gray-300">Posts Count:</span> {data.profileInfo.additionalMetrics.postsCount}</p>
-            <p><span className="font-semibold text-gray-300">Average Likes:</span> {data.profileInfo.additionalMetrics.averageLikes.toFixed(2)}</p>
-            <p><span className="font-semibold text-gray-300">Average Comments:</span> {data.profileInfo.additionalMetrics.averageComments.toFixed(2)}</p>
-            <p><span className="font-semibold text-gray-300">Average Engagement Per Post:</span> {data.profileInfo.additionalMetrics.EngagementPerPost.toFixed(2)}</p>
+          <div className="space-y-6">
+            <div className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg border border-gray-600">
+              <span className="font-semibold text-gray-300 text-lg">Posts Count:</span>
+              <span className="text-xl font-bold text-blue-400">{data.profileInfo.additionalMetrics.postsCount}</span>
+            </div>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg border border-gray-600">
+              <span className="font-semibold text-gray-300 text-lg">Average Likes:</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xl font-bold text-pink-400">{data.profileInfo.additionalMetrics.averageLikes.toFixed(2)}</span>
+                <div className="p-2 bg-pink-500/20 rounded-full border border-pink-500/30">
+                  <ThumbsUp className="w-5 h-5 text-pink-400" />
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg border border-gray-600">
+              <span className="font-semibold text-gray-300 text-lg">Average Comments:</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xl font-bold text-blue-400">{data.profileInfo.additionalMetrics.averageComments.toFixed(2)}</span>
+                <div className="p-2 bg-blue-500/20 rounded-full border border-blue-500/30">
+                  <MessageSquareMore className="w-5 h-5 text-blue-400" />
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex items-center justify-between p-4 bg-gray-700/50 rounded-lg border border-gray-600">
+              <span className="font-semibold text-gray-300 text-lg">Average Engagement Per Post:</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xl font-bold text-green-400">{data.profileInfo.additionalMetrics.EngagementPerPost.toFixed(2)}</span>
+                <div className="p-2 bg-green-500/20 rounded-full border border-green-500/30">
+                  <HeartPlus className="w-5 h-5 text-green-400" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -159,7 +189,7 @@ const SocialSWOT = () => {
       </section>
 
       {/* Competitive Analysis */}
-      <section className="mb-12">
+      {/* <section className="mb-12">
         <h2 className="text-4xl font-bold text-white mb-8 text-center">Competitive Analysis</h2>
         <div className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700">
           <ul className="list-disc text-gray-300 leading-relaxed">
@@ -168,7 +198,7 @@ const SocialSWOT = () => {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

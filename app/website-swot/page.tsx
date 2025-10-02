@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import {localStorageDataNames} from "@/lib/constants";
+import { ReanalyzeButton } from '@/components/ReanalyzeButton';
+import CircularProgress  from '@/components/CicrularProgress';
+
 
 const WebsiteSWOT = () => {
   
@@ -68,18 +70,11 @@ const WebsiteSWOT = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-8">
       <header className="mb-12">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0 }}
-          className="text-5xl font-extrabold text-center text-white mb-4"
-        >
-          Website SWOT Analysis
-        </motion.h1>
+          <h1 className="text-5xl font-extrabold text-center text-white mb-4">
+            Website optimization analytics
+          </h1>
         <div className="flex justify-center">
-          <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
-            Delete this analysis
-          </Button>
+          <ReanalyzeButton onClick={handleDeleteAnalysis}/>
         </div>
       </header>
 
@@ -87,7 +82,7 @@ const WebsiteSWOT = () => {
         
 
         {/* Heading Structure */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -154,15 +149,66 @@ const WebsiteSWOT = () => {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
+        </motion.div> */}
+
+        {/* Performance Metrics with Circular Progress */}
+        <div className='lg:col-span-2'>
+          <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Performance Metrics</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+                {/* Page Speed Score with Progress */}
+                <CircularProgress
+                  value={data.pageSpeedScore}
+                  maxValue={100}
+                  size={140}
+                  strokeWidth={10}
+                  color="#f97316" // Orange color
+                  showProgress={true}
+                  label="Page Speed Score"
+                />
+                
+                {/* Internal Links - Full Circle */}
+                <CircularProgress
+                  value={data.internalLinks}
+                  size={140}
+                  strokeWidth={10}
+                  color="#10b981" // Green color
+                  showProgress={false}
+                  label="Internal Links"
+                />
+                
+                {/* External Links - Full Circle */}
+                <CircularProgress
+                  value={data.externalLinks}
+                  size={140}
+                  strokeWidth={10}
+                  color="#3b82f6" // Blue color
+                  showProgress={false}
+                  label="External Links"
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Full Social Analysis */}
+        <div className="lg:col-span-2">
+          <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Full Website Analysis</CardTitle>
+            </CardHeader>
+            <CardContent className="text-gray-300">
+              <ReactMarkdown>{data.fullSocialAnalysis}</ReactMarkdown>
+            </CardContent>
+          </Card>
+        </div>
 
 
         {/* Page Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
+        <div>
           <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Page Details</CardTitle>
@@ -170,19 +216,15 @@ const WebsiteSWOT = () => {
             <CardContent className="text-gray-300 space-y-2">
               <p className='text-xl'><span className="font-semibold text-gray-300">Title:</span> <span className="text-blue-400">{data.pageInfo.title}</span> ({data.pageInfo.titleLength} chars)</p>
               <p className='text-xl'><span className="font-semibold text-gray-300">Meta Description:</span> <span className="text-blue-400">{data.pageInfo.metaDescription}</span> ({data.pageInfo.metaDescriptionLength} chars)</p>
-              <p className='text-xl'><span className="font-semibold text-gray-300">HTTPS:</span> <span className="text-green-400">{data.pageInfo.https ? 'Yes' : 'No'}</span></p>
+              <p className='text-xl'><span className="font-semibold text-gray-300">HTTPS:</span> <span className={`${data.pageInfo.https ? "text-green-500" : "text-red-500"} font-bold`}>{data.pageInfo.https ? 'Yes' : 'No'}</span></p>
               <span className='me-2 font-semibold text-gray-300 text-xl'>Canonical URL:</span>
               <Link href={data.pageInfo.canonicalUrl} className='text-secondary hover:underline text-xl'>{data.pageInfo.canonicalUrl}</Link>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Open Graph Tags */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-        >
+        <div>
           <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Open Graph Tags</CardTitle>
@@ -195,34 +237,11 @@ const WebsiteSWOT = () => {
               <span className="font-semibold text-gray-300 text-xl">URL:</span> <Link href={data.openGraphTags.url} className="text-secondary hover:underline text-xl">{data.openGraphTags.url}</Link>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
-        
-
-        {/* Page Speed and Link Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Performance & Links</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300 space-y-2">
-              <p className='text-xl'><span className="font-semibold text-gray-300">Page Speed Score:</span> <span className="text-blue-400">{data.pageSpeedScore}</span></p>
-              <p className='text-xl'><span className="font-semibold text-gray-300">Internal Links:</span> <span className="text-blue-400">{data.internalLinks}</span></p>
-              <p className='text-xl'><span className="font-semibold text-gray-300">External Links:</span> <span className="text-blue-400">{data.externalLinks}</span></p>
-            </CardContent>
-          </Card>
-        </motion.div>
 
         {/* Content Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <div>
           <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Content Overview</CardTitle>
@@ -232,14 +251,10 @@ const WebsiteSWOT = () => {
               <p className='text-xl'><span className="font-semibold text-gray-300">Images Missing Alt Tags:</span> <span className="text-red-400">{data.contentInfo.imagesMissingAltTage}</span></p>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-        >
+        <div>
           <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
             <CardHeader>
               <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Social Links</CardTitle>
@@ -254,11 +269,11 @@ const WebsiteSWOT = () => {
               </ul>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
 
         {/* Schema Markup */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -273,11 +288,8 @@ const WebsiteSWOT = () => {
               ))}
             </CardContent>
           </Card>
-        </motion.div>
+        </motion.div> */}
 
-        
-
-        
       </div>
 
       {/* Summary */}
@@ -296,23 +308,6 @@ const WebsiteSWOT = () => {
             </CardContent>
           </Card>
         </motion.div> */}
-
-        {/* Full Social Analysis */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="mt-5"
-        >
-          <Card className="bg-gray-800 rounded-lg shadow-xl border border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-white mb-4 text-center">Full Social Analysis</CardTitle>
-            </CardHeader>
-            <CardContent className="text-gray-300">
-              <ReactMarkdown>{data.fullSocialAnalysis}</ReactMarkdown>
-            </CardContent>
-          </Card>
-        </motion.div>
     </div>
   );
 };

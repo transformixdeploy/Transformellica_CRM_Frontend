@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
+import { ReanalyzeButton } from '@/components/ReanalyzeButton';
 
 const SentimentAnalysis = () => {
 
@@ -113,9 +114,7 @@ const SentimentAnalysis = () => {
                     Comprehensive insights into your customer sentiment and competitive landscape.
                 </p>
                 <div className="flex justify-center mt-6">
-                  <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
-                    Delete this analysis
-                  </Button>
+                    <ReanalyzeButton onClick={handleDeleteAnalysis}/>
                 </div>
             </header>
 

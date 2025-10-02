@@ -34,11 +34,11 @@ interface QuestionsConfig {
 
 // All the services we provide
 export const services: Service[] = [
-  { id: 'social_media_swot', name: 'Social Media SWOT Analysis', icon: BarChartBig, description: "Analyze social media strengths, weaknesses, opportunities, threats.", iconClassName: "w-6 h-6 mb-1 text-primary" },
-  { id: 'website_audit_swot', name: 'Website Audit SWOT', icon: Globe, description: "SWOT analysis of website performance and structure.", iconClassName: "w-6 h-6 mb-1 text-primary" },
+  { id: 'social_media_swot', name: 'Social media performance analytics', icon: BarChartBig, description: "Analyze social media strengths, weaknesses, opportunities, threats.", iconClassName: "w-6 h-6 mb-1 text-primary" },
+  { id: 'website_audit_swot', name: 'Website optimization analytics', icon: Globe, description: "SWOT analysis of website performance and structure.", iconClassName: "w-6 h-6 mb-1 text-primary" },
   { id: 'customer_sentiment', name: 'Customer Sentiment Analysis', icon: Brain, description: "Understand customer perception from online reviews.", iconClassName: "w-6 h-6 mb-1 text-primary" },
   { id: 'branding_audit', name: 'Branding Audit', icon: Palette, description: "Evaluate brand identity, consistency, and positioning.", iconClassName: "w-6 h-6 mb-1 text-primary" },
-  { id: 'all_in_one', name: 'All-in-One Package', icon: Package, description: "Comprehensive: social, website, sentiment, branding.", iconClassName: "w-6 h-6 mb-1 text-primary" },
+  // { id: 'all_in_one', name: 'All-in-One Package', icon: Package, description: "Comprehensive: social, website, sentiment, branding.", iconClassName: "w-6 h-6 mb-1 text-primary" },
 ];
 
 // Questions specific for each service

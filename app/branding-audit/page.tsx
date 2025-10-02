@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import ReactMarkdown from 'react-markdown';
+import { ReanalyzeButton } from '@/components/ReanalyzeButton';
 
 const BrandingAudit = () => {
     const router = useRouter();
@@ -81,9 +82,7 @@ const BrandingAudit = () => {
                     {"A comprehensive analysis of your brand's visual identity, messaging, and overall strategy."}
                 </p>
                 <div className="flex justify-center">
-                    <Button onClick={handleDeleteAnalysis} size="lg" className="bg-background text-red-600 hover:bg-background/90 shadow-lg transform hover:scale-105 hover:cursor-pointer">
-                        Delete this analysis
-                    </Button>
+                    <ReanalyzeButton onClick={handleDeleteAnalysis}/>
                 </div>
             </header>
 
