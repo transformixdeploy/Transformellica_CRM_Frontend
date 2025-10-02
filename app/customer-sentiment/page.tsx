@@ -13,16 +13,34 @@ const SentimentAnalysis = () => {
         if (active && payload && payload.length) {
             // console.log(payload[0].fill);
             
-          return (
-            <div className="bg-gray-700 border border-gray-600 rounded-lg p-3 shadow-lg">
-              <p className="text-white font-semibold text-lg mb-1">{`${label ?? ""}`}</p>
-              {payload.map((item: { value: string; name: string; fill?: string; color?: string }, index: number) => (
-                <p key={index} className="font-medium" style={{ color: item.fill ?? item.color }}>
-                  {`${item.name}: ${item.value}`}
-                </p>
-              ))}
-            </div>
-          );
+            return (
+                <div className="bg-gray-700 border border-gray-600 rounded-lg p-3 shadow-lg">
+                <p className="text-white font-semibold text-lg mb-1">{`${label ?? ""}`}</p>
+                {payload.map((item: { value: string; name: string; fill?: string; color?: string }, index: number) => {
+                    if(isNaN(Number(item.value))){
+                        return (
+                            <p key={index} className="font-medium" style={{ color: item.fill ?? item.color }}>
+                                {`${item.name}: ${item.value}`}
+                            </p>
+                        )
+                    }else{
+                        if(item.name === "Average Sentiment"){
+                            return (
+                                <p key={index} className="font-medium" style={{ color: item.fill ?? item.color }}>
+                                    {`${item.name}: ${Number(item.value).toFixed(2)}`}
+                                </p>
+                            )
+                        }else{
+                            return (
+                                <p key={index} className="font-medium" style={{ color: item.fill ?? item.color }}>
+                                    {`${item.name}: ${Math.round(Number(item.value))}`}
+                                </p>
+                            )
+                        }
+                    }
+                })}
+                </div>
+            );
         }
         return null;
     };
@@ -127,8 +145,8 @@ const SentimentAnalysis = () => {
                             <div className="space-y-3 text-lg">
                                 <p><span className="font-semibold text-gray-300">Google Rating:</span> <span className="text-yellow-400">{competitor.googleRating.toFixed(1)} ⭐</span></p>
                                 <p><span className="font-semibold text-gray-300">Reviews Analyzed:</span> {competitor.reviewsAnalyzed}</p>
-                                <p><span className="font-semibold text-gray-300">Positive:</span> <span className="text-green-400">{competitor.positivePercentage}%</span></p>
-                                <p><span className="font-semibold text-gray-300">Negative:</span> <span className="text-red-400">{competitor.negativePercentage}%</span></p>
+                                <p><span className="font-semibold text-gray-300">Positive:</span> <span className="text-green-400">{Math.round(competitor.positivePercentage)}%</span></p>
+                                <p><span className="font-semibold text-gray-300">Negative:</span> <span className="text-red-400">{Math.round(competitor.negativePercentage)}%</span></p>
                                 <p><span className="font-semibold text-gray-300">Average Sentiment:</span> {competitor.avgSentiment.toFixed(2)}</p>
                             </div>
                         </div>
@@ -164,7 +182,7 @@ const SentimentAnalysis = () => {
                                   <Cell key="cell-1" fill="#EF4444" /> {/* Red for Negative */}
                                   <Cell key="cell-2" fill="#60A5FA" /> {/* Blue for Neutral */}
                               </Pie>
-                              <Tooltip />
+                              <Tooltip content={CustomTooltip} />
                               <Legend />
                           </PieChart>
                       </ResponsiveContainer>

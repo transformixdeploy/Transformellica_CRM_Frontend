@@ -94,7 +94,7 @@ const SocialSWOT = () => {
         </div>
         <div className="bg-gray-800 rounded-lg shadow-xl p-6 text-center">
           <h2 className="text-xl font-semibold text-gray-200 mb-2">Engagement Rate</h2>
-          <p className="text-5xl font-bold text-pink-400">{data.engagementRate}%</p>
+          <p className="text-5xl font-bold text-pink-400">{Math.round(data.engagementRate * 100)}%</p>
         </div>
       </section>
 
@@ -117,9 +117,9 @@ const SocialSWOT = () => {
           <h2 className="text-3xl font-bold text-white mb-6 text-center">Additional Metrics</h2>
           <div className="space-y-4 text-lg">
             <p><span className="font-semibold text-gray-300">Posts Count:</span> {data.profileInfo.additionalMetrics.postsCount}</p>
-            <p><span className="font-semibold text-gray-300">Average Likes:</span> {data.profileInfo.additionalMetrics.averageLikes}</p>
-            <p><span className="font-semibold text-gray-300">Average Comments:</span> {data.profileInfo.additionalMetrics.averageComments}</p>
-            <p><span className="font-semibold text-gray-300">Engagement Per Post:</span> {data.profileInfo.additionalMetrics.EngagementPerPost}</p>
+            <p><span className="font-semibold text-gray-300">Average Likes:</span> {data.profileInfo.additionalMetrics.averageLikes.toFixed(2)}</p>
+            <p><span className="font-semibold text-gray-300">Average Comments:</span> {data.profileInfo.additionalMetrics.averageComments.toFixed(2)}</p>
+            <p><span className="font-semibold text-gray-300">Average Engagement Per Post:</span> {data.profileInfo.additionalMetrics.EngagementPerPost.toFixed(2)}</p>
           </div>
         </div>
       </section>
