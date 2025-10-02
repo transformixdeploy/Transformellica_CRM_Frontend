@@ -55,7 +55,7 @@ const ServiceSelectionStep: React.FC<ServiceSelectionStepProps> = ({ services, o
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
       >
-        <Link href={"/bi-analysis/display"}>
+        <Link href={"/bi-analysis/how-it-works"}>
           <Card
             className="cursor-pointer hover:border-primary transition-all duration-200 h-full flex flex-col items-center justify-center text-center p-3 md:p-4 bg-background/50 hover:bg-muted/50"
           >

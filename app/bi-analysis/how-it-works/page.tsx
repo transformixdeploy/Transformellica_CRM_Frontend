@@ -128,7 +128,7 @@ const HowItWorksCRM = () => {
         >
           <Link href="/bi-analysis/display">
             <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-primary-foreground shadow-lg transform hover:scale-105">
-              Back to BI Analysis
+              Upload your CSV
             </Button>
           </Link>
         </motion.div>
