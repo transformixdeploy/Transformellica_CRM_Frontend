@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Bot, LayoutDashboard, ChartNoAxesCombined, ClipboardMinus, Monitor } from "lucide-react";
+import { Home, Bot, LayoutDashboard, ChartNoAxesCombined, ClipboardMinus, Monitor, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -91,6 +91,17 @@ export default function Sidebar() {
         >
           <ChartNoAxesCombined className="h-4 w-4" />
           {!isCollapsed && "Pattern Analysis"}
+        </Link>
+        <Link
+          href="/bi-analysis/how-it-works"
+          className={cn(
+            "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-primary",
+            pathname === "/bi-analysis/how-it-works" ? "bg-muted text-primary" : "text-muted-foreground",
+            isCollapsed ? "justify-center" : "justify-start"
+          )}
+        >
+          <CircleQuestionMark className="h-4 w-4" />
+          {!isCollapsed && "How It Works"}
         </Link>
         <Link
           href="/bi-analysis/docs"
